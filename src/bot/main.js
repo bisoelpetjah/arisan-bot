@@ -19,6 +19,11 @@ export const sendMainMenu = chat => {
         title: 'Assemble new arisan group',
         payload: botConfig.postbackActions.assembleGroup,
       },
+    ],
+  })
+  chat.say({
+    text: 'What can I help?',
+    buttons: [
       {
         type: 'postback',
         title: 'Disband my arisan group',
