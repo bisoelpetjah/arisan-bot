@@ -31,7 +31,7 @@ bot.on(`postback:${botConfig.postbackActions.listGroup}`, (payload, chat) => {
   sendGroupList(chat, groups, botConfig.postbackActions.groupOptionsById)
 })
 
-bot.on(`postback:${botConfig.postbackActions.joinGroup}`, () => {
+bot.on(`postback:${botConfig.postbackActions.joinGroup}`, (payload, chat) => {
   convoJoinGroup(chat)
 })
 
