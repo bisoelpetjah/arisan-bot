@@ -4,7 +4,7 @@ import appConfig from 'config/app'
 import botConfig from 'config/bot'
 
 import { sendMainMenu } from './bot/main'
-import { sendGroupList, convoJoinGroup, convoAssembleGroup, sendDisbandGroup, postbackDisbandGroupById } from './bot/groups'
+import { sendGroupList, postbackGroupOptionsById, convoJoinGroup, convoAssembleGroup, sendDisbandGroup, postbackDisbandGroupById, postbackBroadcastGroupById, postbackLeaveGroupById } from './bot/groups'
 
 const bot = new BootBot({
   accessToken: appConfig.fbAccessToken,
@@ -48,8 +48,20 @@ bot.on('postback', (payload, chat) => {
 
   if (payloadParams.length > 1) {
     switch (payloadParams[0]) {
+      case botConfig.postbackActions.groupOptionsById: {
+        postbackGroupOptionsById(chat, payloadParams[1])
+        break
+      }
       case botConfig.postbackActions.disbandGroupById: {
         postbackDisbandGroupById(chat, payloadParams[1])
+        break
+      }
+      case botConfig.postbackActions.broadcastGroupById: {
+        postbackBroadcastGroupById(chat, payloadParams[1])
+        break
+      }
+      case botConfig.postbackActions.leaveGroupById: {
+        postbackLeaveGroupById(chat, payloadParams[1])
         break
       }
     }

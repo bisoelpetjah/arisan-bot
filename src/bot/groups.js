@@ -13,6 +13,24 @@ export const sendGroupList = (chat, groups, postbackAction) => {
   })
 }
 
+export const postbackGroupOptionsById = (chat, groupId) => {
+  chat.say({
+    text: 'Arisan group options',
+    buttons: [
+      {
+        type: 'postback',
+        title: 'Send message to arisan group',
+        payload: `${botConfig.postbackActions.broadcastGroupById}/${groupId}`,
+      },
+      {
+        type: 'postback',
+        title: 'Leave arisan group',
+        payload: `${botConfig.postbackActions.leaveGroupById}/${groupId}`,
+      },
+    ],
+  })
+}
+
 export const convoJoinGroup = chat => {
   chat.conversation(convo => {
     convo.ask('What\'s the name of the arisan group you would like to join?', (payload, convo) => {
@@ -62,6 +80,42 @@ export const postbackDisbandGroupById = (chat, groupId) => {
 
       if (confirmed) {
         // TODO: handle disband group by id
+
+        convo.say('Your arisan group has been disbanded.')
+      }
+
+      convo.end()
+      sendMainMenu(chat)
+    })
+  })
+}
+
+export const postbackBroadcastGroupById = (chat, groupId) => {
+  chat.conversation(convo => {
+    convo.ask('What would you like to say to your arisan group?', (payload, convo) => {
+      const message = payload.message.text
+      // TODO: handle broadcast message to group
+
+      convo.say('Your message has been broadcast to your arisan group.')
+
+      convo.end()
+      sendMainMenu(chat)
+    })
+  })
+}
+
+export const postbackLeaveGroupById = (chat, groupId) => {
+  chat.conversation(convo => {
+    convo.ask({
+      text: 'Are you sure?',
+      quickReplies: ['Yes', 'No'],
+    }, (payload, convo) => {
+      const confirmed = payload.message.text === 'Yes'
+
+      if (confirmed) {
+        // TODO: handle leave group by id
+
+        convo.say('You have left from your arisan group.')
       }
 
       convo.end()
