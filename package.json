@@ -4,8 +4,9 @@
   "main": "index.js",
   "author": "Irvan Adhitya <irvan@styletheory.co>",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
-    "develop": "FB_ACCESS_TOKEN= FB_VERIFY_TOKEN= FB_APP_SECRET= nodemon .",
+    "develop": "FB_ACCESS_TOKEN=a FB_VERIFY_TOKEN=a FB_APP_SECRET=a nodemon .",
     "build": "babel --out-dir build src --copy-files",
     "cleanup": "rm -rf build/"
   },
