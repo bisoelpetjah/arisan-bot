@@ -1,13 +1,13 @@
-import express from 'express'
+// import express from 'express'
 import BootBot from 'bootbot'
 
 import appConfig from 'config/app'
 
-const app = express()
-
-app.get('/', (req, res) => res.sendStatus(200))
-
-app.use((req, res) => res.sendStatus(404))
+// const app = express()
+//
+// app.get('/', (req, res) => res.sendStatus(200))
+//
+// app.use((req, res) => res.sendStatus(404))
 
 const bot = new BootBot({
   accessToken: appConfig.fbAccessToken,
@@ -20,6 +20,6 @@ bot.on('message', (payload, chat) => {
   chat.say(text)
 })
 
-bot.start()
+bot.start(process.env.PORT ? parseInt(process.env.PORT) : 3000)
 
-export default app
+// export default app
