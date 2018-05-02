@@ -1,3 +1,5 @@
+import botConfig from 'config/bot'
+
 import { sendMainMenu } from './main'
 
 export const sendGroupList = (chat, groups, postbackAction) => {
@@ -25,43 +27,31 @@ export const convoAssembleGroup = chat => {
   })
 }
 
-export const convoDisbandGroup = (chat, groups) => {
+export const sendDisbandGroup = (chat, groups) => {
+  chat.say({
+    text: 'Which arisan group do you want to disband? Your members will be notified when you disband this arisan group.',
+    buttons: groups.map(({ id, title }) => ({
+      type: 'postback',
+      title,
+      payload: `${botConfig.postbackActions.disbandGroupById}/${id}`,
+    })),
+  })
+}
+
+export const postbackDisbandGroupById = (chat, groupId) => {
   chat.conversation(convo => {
     convo.ask({
-      text: 'Which arisan group do you want to disband? Your members will be notified when you disband this arisan group.',
-      buttons: groups.map(({ id, title }) => ({
-        type: 'postback',
-        title,
-        payload: id,
-      })),
+      text: 'Are you sure?',
+      quickReplies: ['Yes', 'No'],
     }, (payload, convo) => {
-      const groupdId = payload.message.text
-      convo.set('groupId', groupdId)
+      const confirmed = payload.message.text === 'Yes'
 
-      convo.ask({
-        text: 'Are you sure?',
-        buttons: [
-          {
-            type: 'postback',
-            title: 'Yes',
-            payload: 'yes',
-          },
-          {
-            type: 'postback',
-            title: 'Cancel',
-            payload: 'cancel',
-          },
-        ],
-      }, (payload, convo) => {
-        const confirmed = payload.message.text === 'yes'
+      if (confirmed) {
+        // TODO: handle disband group by id
+      }
 
-        if (confirmed) {
-          // TODO: handle disband group by id
-        }
-
-        convo.end()
-        sendMainMenu(chat)
-      })
+      convo.end()
+      sendMainMenu(chat)
     })
   })
 }

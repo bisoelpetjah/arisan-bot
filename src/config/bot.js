@@ -5,5 +5,6 @@ export default {
     assembleGroup: 'ASSEMBLE_GROUP',
     disbandGroup: 'DISBAND_GROUP',
     groupOptionsById: 'GROUP_OPTIONS_BY_ID',
+    disbandGroupById: 'DISBAND_GROUP_BY_ID',
   },
 }

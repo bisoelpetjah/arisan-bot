@@ -43,4 +43,8 @@ bot.on(`postback:${botConfig.postbackActions.disbandGroup}`, (payload, chat) => 
   convoDisbandGroup(chat, groups)
 })
 
+bot.on('postback', (payload, chat) => {
+  console.log(payload);
+})
+
 bot.start(process.env.PORT ? parseInt(process.env.PORT) : 3000)
