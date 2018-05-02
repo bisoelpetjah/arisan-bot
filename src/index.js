@@ -16,8 +16,9 @@ const bot = new BootBot({
 })
 
 bot.on('message', (payload, chat) => {
+  console.log('message');
   const text = payload.message.text
-  chat.say(text)
+  chat.say(text, { typing: true })
 })
 
 bot.start(process.env.PORT ? parseInt(process.env.PORT) : 3000)

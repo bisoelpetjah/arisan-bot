@@ -10,6 +10,4 @@ ADD build src
 # Provide modules
 ADD node_modules node_modules
 
-EXPOSE 3002
-
 CMD ["node", "."]
