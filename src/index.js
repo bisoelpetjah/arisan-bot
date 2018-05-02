@@ -4,7 +4,7 @@ import appConfig from 'config/app'
 import botConfig from 'config/bot'
 
 import { sendMainMenu } from './bot/main'
-import { sendGroupList, convoAssembleGroup, sendDisbandGroup, postbackDisbandGroupById } from './bot/groups'
+import { sendGroupList, convoJoinGroup, convoAssembleGroup, sendDisbandGroup, postbackDisbandGroupById } from './bot/groups'
 
 const bot = new BootBot({
   accessToken: appConfig.fbAccessToken,
@@ -15,11 +15,11 @@ const bot = new BootBot({
 const groups = [
   {
     id: '1',
-    title: 'Group 1',
+    title: 'Dog lovers',
   },
   {
     id: '2',
-    title: 'Group 2',
+    title: 'Cat lovers',
   },
 ]
 
@@ -32,7 +32,7 @@ bot.on(`postback:${botConfig.postbackActions.listGroup}`, (payload, chat) => {
 })
 
 bot.on(`postback:${botConfig.postbackActions.joinGroup}`, () => {
-  // TODO: implement join group
+  convoJoinGroup(chat)
 })
 
 bot.on(`postback:${botConfig.postbackActions.assembleGroup}`, (payload, chat) => {

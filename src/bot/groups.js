@@ -13,6 +13,20 @@ export const sendGroupList = (chat, groups, postbackAction) => {
   })
 }
 
+export const convoJoinGroup = chat => {
+  chat.conversation(convo => {
+    convo.ask('What\'s the name of the arisan group you would like to join?', (payload, convo) => {
+      const groupName = payload.message.text
+      // TODO: handle join group
+
+      convo.say(`You have joined ${groupName}. All members of the group will be notified.`)
+
+      convo.end()
+      sendMainMenu(chat)
+    })
+  })
+}
+
 export const convoAssembleGroup = chat => {
   chat.conversation(convo => {
     convo.ask('What\'s the name of your arisan group?', (payload, convo) => {
