@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "env",
+    "stage-0"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "config": "./src/config",
+        "api": "./src/api",
+      }
+    }],
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfills": false,
+      "regenerator": false
+    }]
+  ]
+}
