@@ -7,9 +7,6 @@ ADD index.js index.js
 # Provide server side transpiled code
 ADD build src
 
-# Provide publicly served files
-ADD public public
-
 # Provide modules
 ADD node_modules node_modules
 
