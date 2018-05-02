@@ -4,7 +4,7 @@ import appConfig from 'config/app'
 import botConfig from 'config/bot'
 
 import { sendMainMenu } from './bot/main'
-import { sendGroupList, convoAssembleGroup, convoDisbandGroup } from './bot/groups'
+import { sendGroupList, convoAssembleGroup, sendDisbandGroup } from './bot/groups'
 
 const bot = new BootBot({
   accessToken: appConfig.fbAccessToken,
@@ -40,7 +40,7 @@ bot.on(`postback:${botConfig.postbackActions.assembleGroup}`, (payload, chat) =>
 })
 
 bot.on(`postback:${botConfig.postbackActions.disbandGroup}`, (payload, chat) => {
-  convoDisbandGroup(chat, groups)
+  sendDisbandGroup(chat, groups)
 })
 
 bot.on('postback', (payload, chat) => {
