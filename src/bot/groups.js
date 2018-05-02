@@ -28,7 +28,7 @@ export const convoAssembleGroup = chat => {
 export const convoDisbandGroup = (chat, groups) => {
   chat.conversation(convo => {
     convo.ask({
-      title: 'Which arisan group do you want to disband? Your members will be notified when you disband this arisan group.',
+      text: 'Which arisan group do you want to disband? Your members will be notified when you disband this arisan group.',
       buttons: groups.map(({ id, title }) => ({
         type: 'postback',
         title,
@@ -39,7 +39,7 @@ export const convoDisbandGroup = (chat, groups) => {
       convo.set('groupId', groupdId)
 
       convo.ask({
-        title: 'Are you sure?',
+        text: 'Are you sure?',
         buttons: [
           {
             type: 'postback',
