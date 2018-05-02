@@ -3,11 +3,7 @@ import BootBot from 'bootbot'
 
 import appConfig from 'config/app'
 
-import routes from './routes'
-
 const app = express()
-
-app.use('/', routes)
 
 app.get('/', (req, res) => res.sendStatus(200))
 
